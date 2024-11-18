@@ -1,4 +1,3 @@
-
 variable "rgname" {
     type    = string
     default = "rg"
@@ -9,15 +8,67 @@ variable "rglocation" {
     default = "Central India"
 }
 
-variable "cosmosdbaccountname" {
+variable "cosmosdbaccount" {
+    type        = string
+    default     = "strapi-cdb"
+}
+
+variable "cosmosdbdatabase" {
+    type        = string
+    default     = "strapi_cosmos_db_database"
+}
+variable "sqlcontainer" {
+    type        = string
+    default     = "strapi-container"
+}
+
+variable "admin_username" {
     type    = string
-    default = "strapi-cdb"
+    default = "strapi"
 }
 
-#Create a file called terraform.tfvars (or any other file with the extension .tfvars), and add the password there: [admin_password = "password"]
 variable "admin_password" {
-  description = "Password for the PostgreSQL administrator."
-  type        = string
-  sensitive   = true
+    description = "Password for the PostgreSQL administrator."
+    type        = string
+    sensitive   = true
 }
 
+variable "vnet" {
+    type    = string
+    default = "strapi-vnet"
+}
+
+variable "subnet" {
+    type    = string
+    default = "strapi-subnet"
+}
+
+variable "nic" {
+    type    = string
+    default = "strapi-nic"
+}
+
+variable "vm" {
+    type    = string
+    default = "strapi-vm"
+}
+
+variable "private_key_path" {
+    type    = string
+    default = "linuxkey.pem"
+}
+
+variable "public_key_path" {
+    type    = string
+    default = "linuxkey.pub"  
+}
+
+variable "storage_account" {
+    type    = string
+    default = "mystorage" 
+}
+
+variable "container" {
+    type    = string
+    default = "container" 
+}
