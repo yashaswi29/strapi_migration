@@ -37,7 +37,7 @@ resource "azurerm_network_security_group" "cosmos_sg" {
   }
 }
 
-resource "azurerm_cosmosdb_account" "strapi_cdb" {
+resource "azurerm_cosmosdb_account" "strapi-cdb" {
   name                      = var.cosmosdbaccount
   location                  = var.rglocation
   resource_group_name       = azurerm_resource_group.rg.name
@@ -61,13 +61,13 @@ resource "azurerm_cosmosdb_account" "strapi_cdb" {
 resource "azurerm_cosmosdb_sql_database" "strapi_cosmos_db_database" {
   name                = var.cosmosdbdatabase
   resource_group_name = azurerm_resource_group.rg.name
-  account_name        = azurerm_cosmosdb_account.strapi_cdb.name
+  account_name        = azurerm_cosmosdb_account.strapi-cdb.name
 }
 
 resource "azurerm_cosmosdb_sql_container" "strapi_cosmos_db_container" {
   name                  = var.sqlcontainer
   resource_group_name   = azurerm_resource_group.rg.name
-  account_name          = azurerm_cosmosdb_account.strapi_cdb.name
+  account_name          = azurerm_cosmosdb_account.strapi-cdb.name
   database_name         = azurerm_cosmosdb_sql_database.strapi_cosmos_db_database.name
   partition_key_paths   = ["/definition/id"]
   partition_key_version = 1

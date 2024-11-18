@@ -5,7 +5,7 @@ resource "azurerm_virtual_network" "vnet" {
     resource_group_name = var.rgname
 }
 
-resource "azurerm_subnet" "subnetA" {
+resource "azurerm_subnet" "subnetB" {
     name                 = "strapi-subnet"
     resource_group_name  = var.rgname
     virtual_network_name = var.vnet
@@ -30,8 +30,8 @@ resource "azurerm_network_security_group" "nsg" {
     }
 }
 
-resource "azurerm_subnet_network_security_group_association" "sec-group-association" {
-    subnet_id                 = azurerm_subnet.subnetA.id
+resource "azurerm_subnet_network_security_group_association" "sec-group-association2" {
+    subnet_id                 = azurerm_subnet.subnetB.id
     network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
@@ -56,7 +56,7 @@ resource "azurerm_network_interface" "net-int" {
     depends_on = [
         azurerm_virtual_network.vnet,
         azurerm_public_ip.public_ip,
-        azurerm_subnet_network_security_group_association.sec-group-association
+        azurerm_subnet_network_security_group_association.sec-group-association2
     ]
 }
 

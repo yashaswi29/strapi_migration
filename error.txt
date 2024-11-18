@@ -1,0 +1,76 @@
+│ Warning: Argument is deprecated
+│ 
+│   with azurerm_storage_container.container,
+│   on az_blob.tf line 12, in resource "azurerm_storage_container" "container":
+│   12:     storage_account_name        = var.storage_account
+│ 
+│ the `storage_account_name` property has been deprecated in favour of `storage_account_id` and will be removed in version 5.0 of the Provider.
+│ 
+│ (and one more similar warning elsewhere)
+╵
+╷
+│ Error: creating Storage Account (Subscription: "e4f118d5-770b-4a41-b2ab-1d30604708f1"
+│ Resource Group Name: "rg"
+│ Storage Account Name: "yourcustomstorageaccount"): performing Create: unexpected status 409 (409 Conflict) with error: ReadOnlyDisabledSubscription: The subscription 'e4f118d5-770b-4a41-b2ab-1d30604708f1' is disabled and therefore marked as read only. You cannot perform any write actions on this subscription until it is re-enabled.
+│ 
+│   with azurerm_storage_account.storage_account,
+│   on az_blob.tf line 1, in resource "azurerm_storage_account" "storage_account":
+│    1: resource "azurerm_storage_account" "storage_account" {
+│ 
+╵
+╷
+│ Error: locating Storage Account "yourcustomstorageaccount"
+│ 
+│   with azurerm_storage_container.container,
+│   on az_blob.tf line 10, in resource "azurerm_storage_container" "container":
+│   10: resource "azurerm_storage_container" "container" {
+│ 
+╵
+╷
+│ Error: creating Resource Group "rg": resources.GroupsClient#CreateOrUpdate: Failure sending request: StatusCode=409 -- Original Error: autorest/azure: Service returned an error. Status=<nil> Code="ReadOnlyDisabledSubscription" Message="The subscription 'e4f118d5-770b-4a41-b2ab-1d30604708f1' is disabled and therefore marked as read only. You cannot perform any write actions on this subscription until it is re-enabled."
+│ 
+│   with azurerm_resource_group.rg,
+│   on az_cosmosdb.tf line 1, in resource "azurerm_resource_group" "rg":
+│    1: resource "azurerm_resource_group" "rg" {
+│ 
+╵
+╷
+│ Error: creating Virtual Network (Subscription: "e4f118d5-770b-4a41-b2ab-1d30604708f1"
+│ Resource Group Name: "rg"
+│ Virtual Network Name: "strapi-vnet"): performing CreateOrUpdate: unexpected status 409 (409 Conflict) with error: ReadOnlyDisabledSubscription: The subscription 'e4f118d5-770b-4a41-b2ab-1d30604708f1' is disabled and therefore marked as read only. You cannot perform any write actions on this subscription until it is re-enabled.
+│ 
+│   with azurerm_virtual_network.vnet,
+│   on az_vm.tf line 1, in resource "azurerm_virtual_network" "vnet":
+│    1: resource "azurerm_virtual_network" "vnet" {
+│ 
+╵
+╷
+│ Error: creating Subnet (Subscription: "e4f118d5-770b-4a41-b2ab-1d30604708f1"
+│ Resource Group Name: "rg"
+│ Virtual Network Name: "strapi-vnet"
+│ Subnet Name: "strapi-subnet"): performing CreateOrUpdate: unexpected status 409 (409 Conflict) with error: ReadOnlyDisabledSubscription: The subscription 'e4f118d5-770b-4a41-b2ab-1d30604708f1' is disabled and therefore marked as read only. You cannot perform any write actions on this subscription until it is re-enabled.
+│ 
+│   with azurerm_subnet.subnetB,
+│   on az_vm.tf line 8, in resource "azurerm_subnet" "subnetB":
+│    8: resource "azurerm_subnet" "subnetB" {
+│ 
+╵
+╷
+│ Error: creating Network Security Group (Subscription: "e4f118d5-770b-4a41-b2ab-1d30604708f1"
+│ Resource Group Name: "rg"
+│ Network Security Group Name: "strapi-nsg"): performing CreateOrUpdate: unexpected status 409 (409 Conflict) with error: ReadOnlyDisabledSubscription: The subscription 'e4f118d5-770b-4a41-b2ab-1d30604708f1' is disabled and therefore marked as read only. You cannot perform any write actions on this subscription until it is re-enabled.
+│ 
+│   with azurerm_network_security_group.nsg,
+│   on az_vm.tf line 15, in resource "azurerm_network_security_group" "nsg":
+│   15: resource "azurerm_network_security_group" "nsg" {
+│ 
+╵
+╷
+│ Error: updating Public I P Address (Subscription: "e4f118d5-770b-4a41-b2ab-1d30604708f1"
+│ Resource Group Name: "rg"
+│ Public I P Addresses Name: "strapi-public-ip"): performing CreateOrUpdate: unexpected status 409 (409 Conflict) with error: ReadOnlyDisabledSubscription: The subscription 'e4f118d5-770b-4a41-b2ab-1d30604708f1' is disabled and therefore marked as read only. You cannot perform any write actions on this subscription until it is re-enabled.
+│ 
+│   with azurerm_public_ip.public_ip,
+│   on az_vm.tf line 38, in resource "azurerm_public_ip" "public_ip":
+│   38: resource "azurerm_public_ip" "public_ip" {
+│ 

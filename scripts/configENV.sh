@@ -38,23 +38,18 @@ database_password = 'your_password_here'
 azure_storage_account_name = storage_data.get('storage_account_name', 'default_account')
 azure_container_name = storage_data.get('container_name', 'default_container')
 
-# Path to the .env file
 envPath = '/home/ubuntu/strapiApp/.env'
 load_dotenv(envPath)
 
-# Set the values in the .env file using the 'set_key' function from dotenv
 set_key(envPath, 'NODE_ENV', node_env)
 
-# Azure SQL Database environment variables
 set_key(envPath, 'DATABASE_HOST', database_host)
-set_key(envPath, 'DATABASE_PORT', '1433')  # Default SQL Server port for Azure
+set_key(envPath, 'DATABASE_PORT', '1433')
 set_key(envPath, 'DATABASE_NAME', database_name)
 set_key(envPath, 'DATABASE_USERNAME', database_username)
 set_key(envPath, 'DATABASE_PASSWORD', database_password)
 
-# Azure Blob Storage environment variables
 set_key(envPath, 'AZURE_STORAGE_ACCOUNT_NAME', azure_storage_account_name)
 set_key(envPath, 'AZURE_CONTAINER_NAME', azure_container_name)
 
-# Output successful completion
 print("Environment variables updated in .env file.")
