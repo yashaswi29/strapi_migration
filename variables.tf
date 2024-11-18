@@ -28,7 +28,7 @@ variable "admin_username" {
 }
 
 variable "admin_password" {
-    description = "Password for the PostgreSQL administrator."
+    description = "Password for the PostgreSQL"
     type        = string
     sensitive   = true
 }
@@ -37,7 +37,7 @@ variable "vnet" {
     type    = string
     default = "strapi-vnet"
 }
-
+    
 variable "subnet" {
     type    = string
     default = "strapi-subnet"
@@ -71,4 +71,9 @@ variable "storage_account" {
 variable "container" {
     type    = string
     default = "container" 
+}
+
+variable "nsg_vm" {
+    type = string
+    default = "strapi-nsg"
 }

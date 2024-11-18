@@ -1,26 +1,26 @@
-# output "instance_details" {
-#     value = {
-#         instance_id = azurerm_linux_virtual_machine.vm.id
-#         public_ip   = azurerm_network_interface.net-int.private_ip_address
-#         private_ip  = azurerm_network_interface.net-int.private_ip_address
-#     }
-# }
+output "instance_details" {
+  value = {
+    vm_id       = azurerm_linux_virtual_machine.vm.id
+    public_ip   = azurerm_public_ip.vm_ip.address
+    private_ip  = azurerm_linux_virtual_machine.vm.private_ip_address
+  }
+}
 
-# output "azure_cosmosdb_details" {
-#     value = {
-#         cosmosdb_name   = azurerm_cosmosdb_account.strapi-cdb.name
-#         cosmosdb_region = azurerm_cosmosdb_account.strapi-cdb.geo_location[0].location
-#         cosmosdb_endpoint = azurerm_cosmosdb_account.strapi-cdb.endpoint
-#         cosmosdb_key    = azurerm_cosmosdb_account.strapi-cdb.primary_master_key
-#         cosmosdb_database = azurerm_cosmosdb_sql_database.strapi_cosmos_db_database.name
-#         cosmosdb_container = azurerm_cosmosdb_sql_container.strapi_cosmos_db_container.name
-#     }
-# }
+output "azure_db_details" {
+  value = {
+    db_name         = azurerm_cosmosdb_sql_database.strapi_cosmos_db_database.name
+    db_account_name = azurerm_cosmosdb_account.strapi-cdb.name
+    db_hostname     = azurerm_cosmosdb_account.strapi-cdb.endpoint
+    db_key          = azurerm_cosmosdb_account.strapi-cdb.primary_master_key
+    db_container    = azurerm_cosmosdb_sql_container.strapi_cosmos_db_container.name
+  }
+}
 
-# output "azure_storage_account_details" {
-#     value = {
-#         storage_account_name  = azurerm_storage_account.storage_account.name
-#         storage_account_arn   = azurerm_storage_account.storage_account.id
-#         storage_account_region = azurerm_storage_account.storage_account.location
-#     }
-# }
+output "azure_storage_details" {
+  value = {
+    storage_account_name   = azurerm_storage_account.storage_account.name
+    storage_account_key    = azurerm_storage_account.storage_account.primary_access_key
+    blob_container_name    = azurerm_storage_container.container.name
+    storage_account_region = azurerm_resource_group.rg.location
+  }
+}
