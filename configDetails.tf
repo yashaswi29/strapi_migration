@@ -3,7 +3,7 @@ resource "null_resource" "save_output_and_deploy" {
   depends_on = [
     azurerm_cosmosdb_sql_database.strapi_cosmos_db_database,  
     azurerm_linux_virtual_machine.vm,
-    azurerm_storage_account.storage_account
+    azurerm_storage_account.strapi_account345
   ]
 
   connection {
@@ -15,9 +15,15 @@ resource "null_resource" "save_output_and_deploy" {
   }
 
   provisioner "file" {
-    source      = "./output"
-    destination = "/home/ubuntu/.output"
+    source      = "/home/yashaswi/Developer/strapi_migration/scripts"
+    destination = "/home/ubuntu/.scripts"
   }
+
+  # provisioner "file" {
+  #   source      = "./config"
+  #   destination = "/home/ubuntu/.config"
+  # }
+
 
   provisioner "remote-exec" {
     inline = [

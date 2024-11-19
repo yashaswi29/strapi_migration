@@ -1,6 +1,6 @@
 variable "rgname" {
     type    = string
-    default = "rg"
+    default = "rg1"
 }
 
 variable "rglocation" {
@@ -65,7 +65,7 @@ variable "public_key_path" {
 
 variable "storage_account" {
     type    = string
-    default = "mystorage" 
+    default = "strapi-account345" 
 }
 
 variable "container" {

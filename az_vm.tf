@@ -1,3 +1,8 @@
+resource "azurerm_resource_group" "rg1" {
+  name     = var.rgname
+  location = var.rglocation
+}
+
 resource "azurerm_virtual_network" "vnet" {
     name                = "strapi-vnet"
     address_space       = ["10.0.0.0/16"]

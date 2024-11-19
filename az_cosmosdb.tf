@@ -1,12 +1,12 @@
-resource "azurerm_resource_group" "rg" {
-  name     = var.rgname
-  location = var.rglocation
-}
+# resource "azurerm_resource_group" "rg1" {
+#   name     = "rg1"
+#   location = var.rglocation
+# }
 
 resource "azurerm_network_security_group" "cosmos_sg" {
   name                     = "cosmos_security_group"
   location                 = var.rglocation
-  resource_group_name      = azurerm_resource_group.rg.name
+  resource_group_name      = var.rgname
 
   security_rule {
     name                       = "Allow-CosmosDB-Inbound"
@@ -40,7 +40,7 @@ resource "azurerm_network_security_group" "cosmos_sg" {
 resource "azurerm_cosmosdb_account" "strapi-cdb" {
   name                      = var.cosmosdbaccount
   location                  = var.rglocation
-  resource_group_name       = azurerm_resource_group.rg.name
+  resource_group_name       = var.rgname
   offer_type                = "Standard"
   kind                      = "GlobalDocumentDB"
 
@@ -54,19 +54,19 @@ resource "azurerm_cosmosdb_account" "strapi-cdb" {
   }
 
   depends_on = [
-    azurerm_resource_group.rg
+    var.rgname
   ]
 }
 
 resource "azurerm_cosmosdb_sql_database" "strapi_cosmos_db_database" {
   name                = var.cosmosdbdatabase
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = var.rgname
   account_name        = azurerm_cosmosdb_account.strapi-cdb.name
 }
 
 resource "azurerm_cosmosdb_sql_container" "strapi_cosmos_db_container" {
   name                  = var.sqlcontainer
-  resource_group_name   = azurerm_resource_group.rg.name
+  resource_group_name   = var.rgname
   account_name          = azurerm_cosmosdb_account.strapi-cdb.name
   database_name         = azurerm_cosmosdb_sql_database.strapi_cosmos_db_database.name
   partition_key_paths   = ["/definition/id"]
@@ -76,7 +76,7 @@ resource "azurerm_cosmosdb_sql_container" "strapi_cosmos_db_container" {
 
 resource "azurerm_subnet" "subnetA" {
   name                 = var.subnet
-  resource_group_name  = azurerm_resource_group.rg.name
+  resource_group_name  = var.rgname
   virtual_network_name = var.vnet
   address_prefixes     = ["10.0.0.0/24"]
 }

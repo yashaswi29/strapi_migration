@@ -17,12 +17,12 @@ output "azure_db_details" {
   sensitive = true
 }
 
-output "azure_storage_details" {
-  value = {
-    storage_account_name   = azurerm_storage_account.storage_account.name
-    storage_account_key    = azurerm_storage_account.storage_account.primary_access_key
-    blob_container_name    = azurerm_storage_container.container.name
-    storage_account_region = azurerm_resource_group.rg.location
-  }
-  sensitive = true
-}
+# output "azure_storage_details" {
+#   value = {
+#     storage_account_name   = azurerm_storage_account.storage_account.name
+#     storage_account_key    = azurerm_storage_account.storage_account.primary_access_key
+#     blob_container_name    = azurerm_storage_container.container.name
+#     storage_account_region = var.rglocation
+#   }
+#   sensitive = true
+# }

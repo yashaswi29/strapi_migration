@@ -1,9 +1,6 @@
 #!/bin/bash
 
-local_project_rootDir_path=$1
-terraform_rootDir_path=$2
 
-cd $local_project_rootDir_path
 npm install mssql
 npm install @azure/storage-blob
 npm install @azure/cosmos
